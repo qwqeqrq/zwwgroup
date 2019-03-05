@@ -1,4 +1,4 @@
-package com.qsmx.zww.com.test.demo;
+package com.qsmx.zww.demo;
 
 import javax.crypto.Cipher;
 import java.security.*;
