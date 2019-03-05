@@ -1,4 +1,4 @@
-package com.qsmx.zww;
+package com.qsmx.zww.com.test.demo;
 
 /**
  * Created by zww on 2019-01-31.尝试使用多线程进行调用

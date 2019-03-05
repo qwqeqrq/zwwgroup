@@ -1,4 +1,4 @@
-package com.qsmx.zww;
+package com.qsmx.zww.com.test.demo;
 
 import java.math.BigDecimal;
 

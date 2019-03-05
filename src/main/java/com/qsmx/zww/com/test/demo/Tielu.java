@@ -1,4 +1,7 @@
-package com.qsmx.zww;
+package com.qsmx.zww.com.test.demo;
+
+import com.qsmx.zww.com.test.demo.DuoXianChengA;
+import com.qsmx.zww.com.test.demo.DuoXianChengB;
 
 /**
  * Created by zww on 2019-01-30.

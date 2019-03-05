@@ -1,4 +1,4 @@
-package com.qsmx.zww;
+package com.qsmx.zww.com.test.demo;
 
 /**
  * Created by zww on 2019-01-30.//感觉自己需要写个单利设计模式,饿汉式
