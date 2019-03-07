@@ -2,12 +2,15 @@ package com.qsmx.zww;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 /**
  * Created by zww on 2019-03-05. springboot web项目启动类
+ * 2019年3月7日10:56:53 上注册中心注册服务
  */
 
 @SpringBootApplication
+@EnableEurekaClient
 public class QsmxApplication {
     public static void main(String[] args) {
         //使用SpringApplication.run启动springboot项目

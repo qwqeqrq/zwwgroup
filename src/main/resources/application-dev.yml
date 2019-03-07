@@ -1,2 +1,8 @@
 server:
   port: 8089
+eureka:
+  client:
+    register-with-eureka: true
+    eureka-server-port: local:8761
+  instance:
+    appname: qxmxzwwgroup
