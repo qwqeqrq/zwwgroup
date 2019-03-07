@@ -6,3 +6,17 @@ eureka:
     eureka-server-port: local:8761
   instance:
     appname: qxmxzwwgroup
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mydate?useUnicode=true&characterEncoding=utf8&autoReconnect=true&useSSL=true
+    username: root
+    password: root
+#在控制台打印MySQL日志
+logging:
+  level:
+    com:
+      qsmx:
+        zww:
+          mapper: debug
+#logging.level.自己的mapper包=日志级别
