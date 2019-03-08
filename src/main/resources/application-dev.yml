@@ -25,3 +25,6 @@ logging:
         zww:
           mapper: debug
 #logging.level.自己的mapper包=日志级别
+
+#钉钉机器人的token练剑
+dingDingRobotUrl: https://oapi.dingtalk.com/robot/send?access_token=81e84c99e81083deb6a99b5fa08678725f5b4e3f7ecae4a010d47ebc5e983072

@@ -11,6 +11,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 @SpringBootApplication
 @EnableEurekaClient
+
 public class QsmxApplication {
     public static void main(String[] args) {
         //使用SpringApplication.run启动springboot项目
