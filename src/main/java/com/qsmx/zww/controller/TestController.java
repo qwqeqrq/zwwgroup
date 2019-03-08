@@ -5,6 +5,7 @@ import com.qsmx.zww.uitil.DingDingMessageBeanUiti;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -35,12 +36,14 @@ public class TestController {
 
     @RequestMapping(value = "sendMessage")
     public String sendMessage() {
-       try {
-           List<String> s = new ArrayList<>();
-           dingDingMessageBeanUiti.sendMessageUtil(false, "呵呵哒", s);
-       }catch (Exception e){
-           e.printStackTrace();
-       }
+        try {
+            List<String> s = new ArrayList<>();
+            s.add("18829288843");
+            s.add("18729086497");
+            dingDingMessageBeanUiti.sendMessageUtil(false, "我是机器人：王侯将相宁有种乎？", s);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return "";
     }
 }
