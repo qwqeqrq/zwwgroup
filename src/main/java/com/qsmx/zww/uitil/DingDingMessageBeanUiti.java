@@ -2,15 +2,13 @@ package com.qsmx.zww.uitil;
 
 import com.qsmx.zww.po.DingDingAtInfo;
 import com.qsmx.zww.po.DingDingMessageInfo;
-import com.qsmx.zww.servcie.DingDingRobotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by zww on 2019-03-08. 钉钉消息工具类
@@ -18,12 +16,13 @@ import java.util.Map;
 @Component
 public class DingDingMessageBeanUiti {
 
+    @Autowired
+    private RestTemplate restTemplate;
+
+
     @Value("${dingDingRobotUrl}")
     private String dingDingRobotUrl;
 
-
-    @Autowired
-    private DingDingRobotService robotService;
 
     /**
      * @描述： 钉钉机器人发送消息体
@@ -57,6 +56,27 @@ public class DingDingMessageBeanUiti {
     }
 
     /**
+     * @描述： 钉钉机器人发送消息方法
+     * @参数： [dingDingMessageInfo 参数类, url 发送的群的连接地址]
+     * @返回值： java.lang.Boolean
+     * @创建人： zhangww
+     * @创建时间： 2019-03-08
+     * @修改人和其它信息：
+     */
+    public Boolean sendMessageByDingDingRobot(@RequestBody DingDingMessageInfo dingDingMessageInfo, String url) {
+        try {
+            Map<String, Object> resultMap = restTemplate.postForObject(url, dingDingMessageInfo, Map.class);
+            if ("ok".equals(Optional.ofNullable(resultMap.get("errmsg")).orElse("false").toString()) &&
+                    0 == Integer.valueOf(Optional.ofNullable(resultMap.get("errcode")).orElse("1001").toString())) {
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    /**
      * @描述： 通过钉钉机器人给群里发起信息
      * @参数： [boolean atAll 是否@所有人, String message 发送消息内容] List<String> atList 需要被@的手机列表
      * @返回值： java.lang.String
@@ -64,12 +84,12 @@ public class DingDingMessageBeanUiti {
      * @创建时间： 2019-03-08
      * @修改人和其它信息：
      */
-    public  Boolean sendMessageUtil(boolean atAll, String message, List<String> atList) throws Exception {
+    public Boolean sendMessageUtil(boolean atAll, String message, List<String> atList) throws Exception {
         DingDingMessageInfo dingDingMessageInfo = DingDingMessageBeanUiti.getDingDingMessageBean(atList, false, message);
         if (dingDingMessageInfo == null) {
             return false;
         }
-        if (robotService.sendMessageByDingDingRobot(dingDingMessageInfo, dingDingRobotUrl)) {
+        if (sendMessageByDingDingRobot(dingDingMessageInfo, dingDingRobotUrl)) {
             return true;
         }
         return false;
