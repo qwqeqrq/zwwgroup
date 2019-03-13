@@ -26,7 +26,7 @@ public class TestController {
 
     @RequestMapping(value = "shijing")
     public String getController() {
-        return "有美一人，清扬婉兮，邂逅相遇，适我愿兮。";
+        return "有美一人，清扬婉兮，邂逅相遇，适我愿兮!!。";
     }
 
     @RequestMapping(value = "surname")
