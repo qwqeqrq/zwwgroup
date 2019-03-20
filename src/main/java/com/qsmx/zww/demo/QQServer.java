@@ -4,7 +4,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.nio.channels.AsynchronousServerSocketChannel;
 import java.util.Scanner;
 
 /**
@@ -21,17 +20,15 @@ public class QQServer {
             OutputStream outputStream = socket.getOutputStream();//  得到输出流
             InputStream inputStream = socket.getInputStream();//  得到输入流
             System.out.println("皮卡丘已上线连接成功");
-            while (true) {
-                byte[] bytes = new byte[1024];//一次读取1024个字节
-                inputStream.read(bytes);
-                System.out.println(new String(bytes, "UTF-8"));
-                /*if (sc.hasNext()) {
-                    byte[] b = sc.next().getBytes("UTF-8");
-                    outputStream.write(b);
-                }*/
-            }
-
-            //sendAndReseve(inputStream, bytes, sc, outputStream);
+            //创建发送线程和接受线程
+            Thread sendThread = new Thread(new QQsendThread(sc, outputStream));
+            Thread resciveThread = new Thread(new QQreseveThread(inputStream, socket));
+            //启动线程
+            resciveThread.start();
+            sendThread.start();
+            //todo 由于这个检查键盘方法会阻塞，导致不能及时收到，所以我决定使用两个线程去分别做这两件事
+            //todo 一个线程专门监听键盘输入
+            //todo 一个线程专门准备显示对方的文字
         } catch (Exception e) {
             e.printStackTrace();
         }

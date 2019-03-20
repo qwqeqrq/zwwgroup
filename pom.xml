@@ -7,9 +7,11 @@
     <groupId>whimsy</groupId>
     <artifactId>zwwgroup</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
     <properties>
         <jdk.version>1.8</jdk.version>
     </properties>
+
     <parent>
         <!--是一个特殊的启动器，提供有用的Maven默认值-->
         <groupId>org.springframework.boot</groupId>
@@ -22,6 +24,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
         <dependency>
             <!--新增为注册中心客户端eureka clien-->
             <groupId>org.springframework.cloud</groupId>
@@ -49,8 +52,16 @@
             <version>1.2.47</version>
         </dependency>
 
-
     </dependencies>
+    <!--因为要用maven 打包运行 导入springboot maven 插件-->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 
 
 </project>
