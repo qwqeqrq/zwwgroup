@@ -13,7 +13,7 @@ public class Jijin {
         System.out.println("----------------------------------------------");
 
         System.out.println("----------------------------------------------");
-        System.out.println("当年分红："+fenhong(new BigDecimal(0.0350)));//传入当日净值
+        System.out.println("当年分红："+fenhong(new BigDecimal(1.0374)));//传入当日净值
         System.out.println("----------------------------------------------");
     }
 
