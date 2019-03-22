@@ -25,5 +25,6 @@ public class ApiConfig {
         factory.setConnectTimeout(5000);//单位为ms
         return factory;
     }
+
 }
 

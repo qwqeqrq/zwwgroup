@@ -3,6 +3,7 @@ package com.qsmx.zww.controller;
 import com.qsmx.zww.servcie.SurnameService;
 import com.qsmx.zww.uitil.DingDingMessageBeanUiti;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,6 +23,8 @@ public class TestController {
     private SurnameService surnameService;
     @Autowired
     private DingDingMessageBeanUiti dingDingMessageBeanUiti;
+    @Autowired
+    private KafkaTemplate kafkaTemplate;
 
 
     @RequestMapping(value = "shijing")
@@ -37,10 +40,12 @@ public class TestController {
     @RequestMapping(value = "sendMessage")
     public String sendMessage() {
         try {
-            List<String> s = new ArrayList<>();
+            kafkaTemplate.send("test", "我是java生产者");
+            System.out.println("--------------已生产");
+          /*  List<String> s = new ArrayList<>();
             s.add("18829288843");
             s.add("18729086497");
-            dingDingMessageBeanUiti.sendMessageUtil(false, "我是机器人：王侯将相宁有种乎？", s);
+            dingDingMessageBeanUiti.sendMessageUtil(false, "我是机器人：王侯将相宁有种乎？", s);*/
         } catch (Exception e) {
             e.printStackTrace();
         }

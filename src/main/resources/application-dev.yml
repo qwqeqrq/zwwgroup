@@ -1,5 +1,5 @@
 server:
-  port: 8089
+  port: 8081
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -8,6 +8,14 @@ spring:
     password: root
   application:
     name: qxmxzwwgroup
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: data
+      # username:
+      # password:
+
 eureka:
   client:
     register-with-eureka: true
@@ -24,6 +32,14 @@ logging:
       qsmx:
         zww:
           mapper: debug
+#在控制台打印mongo日志
+    org:
+      springframework:
+        data:
+          mongodb:
+            core: debug
+
+
 #logging.level.自己的mapper包=日志级别
 
 #钉钉机器人的token练剑
