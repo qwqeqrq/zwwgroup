@@ -15,8 +15,8 @@ import java.util.Map;
 /**
  * Created by zww on 2019-03-21.
  */
-@EnableKafka
-@Configuration
+//@EnableKafka
+//@Configuration
 public class KafkaConfig {
     //在kafkaConfig类中添加配置
 

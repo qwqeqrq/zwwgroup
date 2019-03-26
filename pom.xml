@@ -74,6 +74,19 @@
             <artifactId>spring-kafka</artifactId>
             <version>2.2.1.RELEASE</version>
         </dependency>
+        <!--/httpclient -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.6</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.56</version>
+        </dependency>
+
 
     </dependencies>
     <!--因为要用maven 打包运行 导入springboot maven 插件-->
