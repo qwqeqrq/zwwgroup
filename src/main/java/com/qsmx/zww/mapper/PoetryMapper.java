@@ -14,6 +14,6 @@ public interface PoetryMapper {
     @Insert("insert into poetry (name ,author,verse,createDate,updateDate) values (#{poetryInfo.name},#{poetryInfo.author},#{poetryInfo.verse},now(),now())")
     Integer insertPoetry(@Param("poetryInfo") PoetryInfo poetryInfo);
 
-    @Select(" select name ,author,verse,createDate from poetry where name =#{poetryInfo.name}")
+    @Select(" select name ,author,verse,createDate from poetry where name =#{poetryInfo.name} and author=#{poetryInfo.author} ")
     PoetryInfo selectPoetryByName(@Param("poetryInfo") PoetryInfo poetryInfo);
 }

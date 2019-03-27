@@ -1,13 +1,14 @@
 package com.qsmx.zww.servcie;
 
+import com.qsmx.zww.mapper.CarMapper;
+import com.qsmx.zww.mapper.DouBanTVmapper;
 import com.qsmx.zww.uitil.HttpClient;
+import com.qsmx.zww.uitil.JsonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,6 +17,11 @@ import java.util.Map;
 @Service
 public class BilibiliServiceImpl implements BilibiliService {
 
+
+    @Autowired
+    private DouBanTVmapper douBanTVmapper;
+    @Autowired
+    private CarMapper carMapper;
     /**
      * @描述： 获取B站 热门视频排行
      * @参数： []
@@ -25,7 +31,7 @@ public class BilibiliServiceImpl implements BilibiliService {
      * @修改人和其它信息：
      */
     @Override
-    public String RankListByBilibili() {
+    public String rankListByBilibili() {
         try {
             Map<String, String> headers = new HashMap();
             headers.put("User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36");
@@ -43,4 +49,52 @@ public class BilibiliServiceImpl implements BilibiliService {
         }
         return "获取哔哩哔哩失败";
     }
+
+    @Override
+    public String douBanTV() {
+        int i = 0;
+        try {
+            a:
+            while (true) {
+                String url = "https://movie.douban.com/j/search_subjects?type=tv&tag=%E7%83%AD%E9%97%A8&sort=recommend&page_limit=20&page_start=" + i;
+                String result = HttpClient.doGet(url);
+                Map map = JsonUtil.aliToMap(result);
+                if (map != null && !map.isEmpty()) {
+                    List<Map> lists = JsonUtil.aliToList(map.get("subjects").toString());
+                    if (lists.isEmpty()) {
+                        break;
+                    }
+                    for (Map map1 : lists) {
+                        if (douBanTVmapper.selectDouBanTV(map1) == null || douBanTVmapper.selectDouBanTV(map1).isEmpty()) {
+                            int s = douBanTVmapper.insertDoubanTV(map1);
+                            if (s > 0) {
+                                System.out.println("成功获得电视剧榜");
+                            }
+                        } else {
+                            System.out.println("已经存在！正在下一个");
+                            i++;
+                            continue a;
+                        }
+                    }
+                }
+                i++;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "错误";
+        }
+        return "薅豆瓣电视完成，去看看成功吧";
+    }
+
+    /*public static void main(String[] args) throws Exception {
+        //汽车之家 偷取所有汽车品牌
+        String result = HttpClient.doGet("https://www.autohome.com.cn/ashx/AjaxIndexCarFind.ashx?type=11");
+        Map map = JsonUtil.aliToMap(result);
+       List<Map> list = JsonUtil.aliToList(JsonUtil.aliToMap(map.get("result").toString()).get("branditems").toString());
+       for (Map li :list){
+           carMapper.insertCar(li);
+       }
+    }*/
+
+    /*偷取了全国的大学信息哈哈*/
 }
