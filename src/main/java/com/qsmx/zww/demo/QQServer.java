@@ -13,7 +13,7 @@ public class QQServer {
 
     public static void main(String[] args) {
         try {
-            ServerSocket serverSocket = new ServerSocket(8081);//实例化一个 socket 服务端对象 ，端口 8080
+            ServerSocket serverSocket = new ServerSocket(8081);//实例化一f个 socket 服务端对象 ，端口 8080
             Socket socket = serverSocket.accept();//一直等待客户端的连接 如果连接成功 返回客户端和服务端公用的交互对象
             //System.in表示标准化输出，也就是键盘输出
             Scanner sc = new Scanner(System.in);
