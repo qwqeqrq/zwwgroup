@@ -11,7 +11,7 @@ import java.util.Map;
  * Created by zww on 2019-03-26.
  */
 @Mapper
-public interface DouBanTVmapper {
+public interface DouBanTVMapper {
 
 
     @Insert("insert into  doubantv ( title, rate, url, cover,createDate) values (#{map.title},#{map.rate},#{map.url},#{map.cover},now() )")
@@ -20,4 +20,11 @@ public interface DouBanTVmapper {
 
     @Select("select id id, title title, rate rate, url url, cover cover from doubantv where title=#{map.title} and deleted=0 ")
     Map selectDouBanTV(@Param("map") Map map);
+
+    @Insert("insert into  doubanmovie ( title, rate, url, cover,createDate) values (#{map.title},#{map.rate},#{map.url},#{map.cover},now() )")
+    Integer insertDoubanMovie(@Param("map") Map map);
+
+
+    @Select("select id id, title title, rate rate, url url, cover cover from doubanmovie where title=#{map.title} and deleted=0 ")
+    Map selectDouBanMovie(@Param("map") Map map);
 }

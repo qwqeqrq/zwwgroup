@@ -9,4 +9,6 @@ public interface BilibiliService {
     String rankListByBilibili();
     //豆瓣tv
     String douBanTV();
+    //最近豆瓣电影
+    String douBanMovie();
 }

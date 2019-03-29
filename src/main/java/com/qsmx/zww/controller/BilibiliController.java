@@ -53,8 +53,15 @@ public class BilibiliController {
         return "失败";
     }
 
+    //电视
     @RequestMapping(value = "doubanTV")
     public String douBanTv() {
         return bilibiliService.douBanTV();
+    }
+
+    //电影
+    @RequestMapping(value = "doubanMovie")
+    public String douBanMocie() {
+        return bilibiliService.douBanMovie();
     }
 }
