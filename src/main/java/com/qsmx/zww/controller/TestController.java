@@ -1,5 +1,6 @@
 package com.qsmx.zww.controller;
 
+import com.qsmx.zww.servcie.PoetryService;
 import com.qsmx.zww.servcie.SurnameService;
 import com.qsmx.zww.uitil.DingDingMessageBeanUiti;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +8,6 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -21,6 +21,8 @@ public class TestController {
 
     @Autowired
     private SurnameService surnameService;
+    @Autowired
+    private PoetryService poetryService;
     @Autowired
     private DingDingMessageBeanUiti dingDingMessageBeanUiti;
     @Autowired
@@ -50,5 +52,16 @@ public class TestController {
             e.printStackTrace();
         }
         return "";
+    }
+
+    @RequestMapping("run")
+    public String run() {
+        Integer result = poetryService.insertStealPoetry();
+        //Integer result1 = poetryService.insertNetName();
+        if (result == null /* result1 == null*/) {
+            System.out.println("程序完毕！！！！");
+            return "完毕";
+        }
+        return "runing";
     }
 }

@@ -14,7 +14,7 @@ public class SimpleConsumerListener {
     private final CountDownLatch latch1 = new CountDownLatch(1);
 
 
-    @KafkaListener(id = "test-consumer-group", topics = {"test"})
+   // @KafkaListener(id = "test-consumer-group", topics = {"test"})
     public void listen(String message) {
         //do something here  停止容器
         System.out.println("--------------我正在消费------------");
