@@ -9,7 +9,7 @@ public class Jijin {
 
     public static void main(String[] args) {
         System.out.println("----------------------------------------------");
-        System.out.println("累计收益："+jisuan(new BigDecimal(1.0365)));//传入当日净值
+        System.out.println("累计收益："+jisuan(new BigDecimal(1.0242)));//传入当日净值
         System.out.println("----------------------------------------------");
 
         System.out.println("----------------------------------------------");
