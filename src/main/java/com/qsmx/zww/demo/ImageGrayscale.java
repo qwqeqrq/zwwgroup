@@ -15,7 +15,7 @@ public class ImageGrayscale {
         File file = null;
 
         try {
-            file = new File("C:\\Users\\Admin\\Desktop\\t01b39f6abc5a410de4.jpg");
+            file = new File("C:\\Users\\Admin\\Desktop\\微信图片_20190401183448.jpg");
             image = ImageIO.read(file);
             int width = image.getWidth();
             int height = image.getHeight();
