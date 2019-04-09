@@ -1,4 +1,7 @@
-package com.qsmx.zww.demo;
+package com.qsmx.zww.demo.socket;
+
+import com.qsmx.zww.demo.socket.QQreseveThread;
+import com.qsmx.zww.demo.socket.QQsendThread;
 
 import java.io.InputStream;
 import java.io.OutputStream;

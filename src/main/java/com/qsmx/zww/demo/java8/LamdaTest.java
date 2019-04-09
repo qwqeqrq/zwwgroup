@@ -1,4 +1,4 @@
-package com.qsmx.zww.demo;
+package com.qsmx.zww.demo.java8;
 
 import java.util.Optional;
 

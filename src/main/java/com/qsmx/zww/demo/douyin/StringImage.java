@@ -1,4 +1,4 @@
-package com.qsmx.zww.demo;
+package com.qsmx.zww.demo.douyin;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;

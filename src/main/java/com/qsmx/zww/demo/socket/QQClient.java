@@ -1,4 +1,4 @@
-package com.qsmx.zww.demo;
+package com.qsmx.zww.demo.socket;
 
 import java.io.InputStream;
 import java.io.OutputStream;

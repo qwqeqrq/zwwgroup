@@ -1,4 +1,4 @@
-package com.qsmx.zww.demo;
+package com.qsmx.zww.demo.daily;
 
 import java.math.BigDecimal;
 

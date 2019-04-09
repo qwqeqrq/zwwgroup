@@ -1,4 +1,7 @@
-package com.qsmx.zww.demo;
+package com.qsmx.zww.demo.tielu12306;
+
+import com.qsmx.zww.demo.thead.DuoXianChengA;
+import com.qsmx.zww.demo.thead.DuoXianChengB;
 
 /**
  * Created by zww on 2019-01-30.
