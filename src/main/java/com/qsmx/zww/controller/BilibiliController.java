@@ -64,4 +64,5 @@ public class BilibiliController {
     public String douBanMocie() {
         return bilibiliService.douBanMovie();
     }
+
 }
