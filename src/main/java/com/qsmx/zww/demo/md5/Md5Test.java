@@ -2,7 +2,7 @@ package com.qsmx.zww.demo.md5;
 
 
 import com.qsmx.zww.uitil.Md5Util;
-import org.apache.tomcat.util.security.MD5Encoder;
+
 
 /**
  * Created by zww on 2019-04-09.

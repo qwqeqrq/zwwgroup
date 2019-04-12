@@ -109,7 +109,12 @@
             <version>1.8.3</version>
         </dependency>
         <!--导入导出工具涉及相关依赖完毕-->
-
+        <!--ftp上传文件到静态服务器-->
+        <dependency>
+            <groupId>commons-net</groupId>
+            <artifactId>commons-net</artifactId>
+            <version>3.6</version>
+        </dependency>
     </dependencies>
     <!--因为要用maven 打包运行 导入springboot maven 插件-->
     <build>
