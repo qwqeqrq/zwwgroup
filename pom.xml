@@ -51,13 +51,6 @@
             <version>2.1.3.RELEASE</version>
         </dependency>
 
-        <!--json-->
-        <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.47</version>
-        </dependency>
         <!--kafka start-->
         <dependency>
             <groupId>org.apache.kafka</groupId>
