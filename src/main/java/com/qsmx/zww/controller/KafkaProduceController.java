@@ -17,7 +17,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping(value = "test")
-public class TestController {
+public class KafkaProduceController {
 
     @Autowired
     private SurnameService surnameService;
@@ -40,6 +40,7 @@ public class TestController {
     }
 
     @RequestMapping(value = "sendMessage")
+    //TODO kafka生产者
     public String sendMessage() {
         try {
             kafkaTemplate.send("test", "我是java生产者");
