@@ -17,6 +17,14 @@ import java.io.InputStream;
 public class ImageUploadController {
 
 
+    /**
+     *@描述： 上传文件  path 是在ftp服务器内部能看到的路径（pub就是ftp服务器默认根目录） 不是云服务器的路径
+     *@参数：  [file]
+     *@返回值： java.lang.String
+     *@创建人： zhangww
+     *@创建时间：  2019-05-13
+     *@修改人和其它信息：
+     */
     @RequestMapping(value = "up")
     public String up(@RequestBody MultipartFile file) {
         InputStream inputStream = null;
