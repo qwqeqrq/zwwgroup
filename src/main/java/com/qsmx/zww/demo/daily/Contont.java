@@ -15,7 +15,7 @@ public class Contont {
     }
 
     //提供一个公共的对外的方法
-    public  static Contont getContont() {
+    public static Contont getContont() {
         return contont;
     }
 
@@ -23,7 +23,30 @@ public class Contont {
         return count;
     }
 
-    public  void setCount(int count) {
+    public void setCount(int count) {
         this.count = count;
+    }
+
+    //选择
+    public static void main(String[] args) {
+
+        int[] arr = {1, 31, 9, 7, 5, 4, 6, 3};
+        for (int i = 0; i < arr.length - 1; i++) {
+            for (int j = i+1; j <arr.length ; j++) {
+                if (arr[i]>arr[j]){
+                    int z ;
+                    z=arr[j];
+                    arr[j]=arr[i];
+                    arr[i]=z;
+                }
+
+            }
+
+        }
+
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(" " + arr[i]);
+        }
+
     }
 }
