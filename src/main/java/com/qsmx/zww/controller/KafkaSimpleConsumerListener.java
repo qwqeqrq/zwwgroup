@@ -1,7 +1,6 @@
 package com.qsmx.zww.controller;
 
 
-import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
 import java.util.concurrent.CountDownLatch;
@@ -10,7 +9,7 @@ import java.util.concurrent.CountDownLatch;
  * Created by zww on 2019-03-21.kafka的监听类
  */
 @Component
-public class SimpleConsumerListener {
+public class KafkaSimpleConsumerListener {
     private final CountDownLatch latch1 = new CountDownLatch(1);
 
 

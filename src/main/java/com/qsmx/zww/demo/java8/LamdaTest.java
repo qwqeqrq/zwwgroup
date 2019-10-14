@@ -14,7 +14,7 @@ interface Lambda<T> {
 
 public class LamdaTest {
 
-//TODO 函数式编程的点 在于匿名的 方法体实现，随时实现 随时调用 ，注意函数式接口只能有一个方法
+    //TODO 函数式编程的点 在于匿名的 方法体实现，随时实现 随时调用 ，注意函数式接口只能有一个方法
     public static void main(String[] args) {
         int count = 0;
         Lambda ss = () -> "卧槽这个怎么就好了呢";
@@ -23,5 +23,8 @@ public class LamdaTest {
         //System.out.println(lol.getString().toString()+ss.getString());
         String s = null;
         System.out.println(Optional.ofNullable(text.getString()).orElse("如果我是一个null，我这里需要一个lambda表达式做参数"));
+        //因为runnable接口是一个函数式接口  创建一个线程的时候可以直接使用lambda表达式进行优雅创建
+        new Thread(() -> System.out.println("我是实现的runnable《函数式接口》的空参lambda实现的run方法的主体")).start();
+        //.start()启动打印线程
     }
 }
