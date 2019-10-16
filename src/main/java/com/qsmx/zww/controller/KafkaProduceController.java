@@ -43,7 +43,7 @@ public class KafkaProduceController {
     //TODO kafka生产者
     public String sendMessage() {
         try {
-            kafkaTemplate.send("test", "我是java生产者");
+            kafkaTemplate.send("demo", "我是java生产者");
             System.out.println("--------------已生产");
           /*  List<String> s = new ArrayList<>();
             s.add("18829288843");

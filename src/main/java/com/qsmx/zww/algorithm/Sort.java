@@ -39,6 +39,13 @@ public class Sort {
         }
     }
 
+    private static void fastSort(int[] a) {
+        /**
+         * 快排：思路 从左边选一个基准值，每次将基准值归位  然后递归进行
+         */
+       //todo 待完成
+    }
+
     private static void printArray(List list) {
         list.stream().forEach((e) -> {
             System.out.print(" ");
