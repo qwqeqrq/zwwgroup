@@ -4,6 +4,9 @@ public interface BiQuGeDownloadService {
 
     String downLoad();
 
-    String insertTxt(StringBuffer stringBuffer);
+    String insertTxt(StringBuffer stringBuffer,String bookName);
+
+
+    String downGBK();
 
 }

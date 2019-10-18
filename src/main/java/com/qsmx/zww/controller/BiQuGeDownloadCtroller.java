@@ -17,4 +17,10 @@ public class BiQuGeDownloadCtroller {
         biQuGeDownloadService.downLoad();
         return "下载成功";
     }
+
+    @RequestMapping(value = "downloadGBK")
+    public String downGBK() {
+        biQuGeDownloadService.downGBK();
+        return "下载成功";
+    }
 }
