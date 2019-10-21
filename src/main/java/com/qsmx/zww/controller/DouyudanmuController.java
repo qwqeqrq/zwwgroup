@@ -1,6 +1,8 @@
 package com.qsmx.zww.controller;
 
 
+import com.qsmx.zww.mapper.DanMuMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,6 +23,9 @@ import java.util.Map;
 @RequestMapping(value = "/danmu")
 public class DouyudanmuController {
 
+    @Autowired
+    private  DanMuMapper danMuMapper;
+
     public static final String HOST = "124.95.155.51";
     public static final int DATA_HEAD_LEN = 4 + 4 + 1;
     public static final int CODE = 689;
@@ -30,11 +35,11 @@ public class DouyudanmuController {
     @RequestMapping(value = "/go")
     public String getDanmu() {
         try {
-            Thread t1 = new Thread(new CrawlerThread(74960));
-           //Thread t2 = new Thread(new CrawlerThread(60937));
+            Thread t1 = new Thread(new CrawlerThread(71017));
+            //Thread t2 = new Thread(new CrawlerThread(60937));
             Thread t3 = new Thread(new AliveThread());
             t1.start();
-           // t2.start();
+            // t2.start();
             t3.start();
 
             while (Thread.activeCount() > 1) {
@@ -161,9 +166,9 @@ public class DouyudanmuController {
             String keepliveMsg = "type@=mrkl/";
             while (true) {
                 sendRequest(client, keepliveMsg);
-                System.out.println(DF.format(new Date()) + " keep alive ***********************");
+                //System.out.println(DF.format(new Date()) + " keep alive ***********************");
                 try {
-                    Thread.sleep(10000);
+                    Thread.sleep(40000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -172,7 +177,7 @@ public class DouyudanmuController {
         }
     }
 
-  static   class CrawlerThread implements Runnable {
+     class CrawlerThread implements Runnable {
         private Socket client;
         private int roomId;
 
@@ -201,6 +206,11 @@ public class DouyudanmuController {
                     String roomId = m.get("rid");
                     String level = m.get("level");
                     String time = DF.format(new Date());
+                    HashMap hashMap = new HashMap();
+                    hashMap.put("title", cardLevel + "级" + cardName);
+                    hashMap.put("name", name);
+                    hashMap.put("value", danMu);
+                    danMuMapper.insertDanMu(hashMap);
                     System.out.println("Insert Success! " + time + " " + cardLevel + "级" + cardName + " [" + name + "] : " + danMu);
                 }
 
@@ -219,7 +229,7 @@ public class DouyudanmuController {
                     client.close();
                 }
                 client = new Socket(HOST, 8601);
-                if (client==null ){
+                if (client == null) {
                     System.out.println("连接服务器失败");
                 }
             } catch (IOException e) {
@@ -240,9 +250,10 @@ public class DouyudanmuController {
     }
 
 
-    public static void main(String[] args) {
+   /* public static void main(String[] args) {
 
-        Thread t1 = new Thread(new CrawlerThread(5587551));
+        //Thread t1 = new Thread(new CrawlerThread(71017));
+        Thread t1 = new Thread(new CrawlerThread(71017));
         //Thread t2 = new Thread(new CrawlerThread(5587551));
         Thread t3 = new Thread(new AliveThread());
         t1.start();
@@ -252,6 +263,6 @@ public class DouyudanmuController {
         while (Thread.activeCount() > 1) {
             Thread.yield();
         }
-    }
+    }*/
 }
 
