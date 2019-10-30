@@ -25,12 +25,21 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <dependency>
-            <!--新增为注册中心客户端eureka clien-->
+     <!--   <dependency>
+            &lt;!&ndash;新增为注册中心客户端eureka clien&ndash;&gt;
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
             <version>2.1.0.RELEASE</version>
+        </dependency>-->
+        <!--StringUtils-->
+        <!-- https://mvnrepository.com/artifact/commons-lang/commons-lang -->
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.6</version>
         </dependency>
+
+
         <dependency>
             <!--为了连接数据库，引入mybtis依赖，提供@Mapper注解-->
             <groupId>org.mybatis.spring.boot</groupId>
