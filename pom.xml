@@ -19,18 +19,37 @@
         <version>2.1.3.RELEASE</version>
     </parent>
     <dependencies>
+
         <dependency>
             <!--web项目添加，提供了启动类的@SpringbootApplication注解-->
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <dependency>
+            <!--redis-->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
 
-     <!--   <dependency>
-            &lt;!&ndash;新增为注册中心客户端eureka clien&ndash;&gt;
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-            <version>2.1.0.RELEASE</version>
-        </dependency>-->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>2.9.0</version>
+        </dependency>
+
+        <!--新增为注册中心客户端eureka clien-->
+          <!-- <dependency>
+               <groupId>org.springframework.cloud</groupId>
+               <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+               <version>2.1.0.RELEASE</version>
+           </dependency>-->
+        <!-- https://mvnrepository.com/artifact/commons-lang/commons-lang -->
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.6</version>
+        </dependency>
+
         <!--StringUtils-->
         <!-- https://mvnrepository.com/artifact/commons-lang/commons-lang -->
         <dependency>
@@ -137,6 +156,7 @@
             <artifactId>javase</artifactId>
             <version>3.3.0</version>
         </dependency>
+
     </dependencies>
     <!--因为要用maven 打包运行 导入springboot maven 插件-->
     <build>

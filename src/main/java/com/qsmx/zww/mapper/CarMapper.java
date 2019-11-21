@@ -3,7 +3,9 @@ package com.qsmx.zww.mapper;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -19,4 +21,10 @@ public interface CarMapper {
             "values (#{map.school_id},#{map.name},#{map.level_name},#{map.type_name},#{map.dual_class_name},#{map.county_name},#{map.province_name},#{map.city_name}" +
             ",#{map.is_top},#{map.f211},#{map.f985},#{map.sss},now() )")
     Integer insertUniversity(@Param("map") Map map);
+
+    @Select("select id from customer_info")
+    List<String> getCustid();
+
+    @Select("select id from other_ad_group")
+    List<String> getAdGroupid();
 }

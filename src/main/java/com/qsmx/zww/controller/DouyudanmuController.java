@@ -35,7 +35,8 @@ public class DouyudanmuController {
     @RequestMapping(value = "/go")
     public String getDanmu() {
         try {
-            Thread t1 = new Thread(new CrawlerThread(71017));
+           // Thread t1 = new Thread(new CrawlerThread(71017));
+            Thread t1 = new Thread(new CrawlerThread(688631));
             //Thread t2 = new Thread(new CrawlerThread(60937));
             Thread t3 = new Thread(new AliveThread());
             t1.start();

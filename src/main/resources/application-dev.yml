@@ -2,8 +2,9 @@ server:
   port: 8081
 spring:
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/mydate?useUnicode=true&characterEncoding=utf8&autoReconnect=true&useSSL=true&serverTimezone=UTC
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mydata?useUnicode=true&characterEncoding=utf8&autoReconnect=true&useSSL=true&serverTimezone=UTC
+    #url: jdbc:mysql://*******:3306/feather?useUnicode=true&characterEncoding=utf8&autoReconnect=true&useSSL=true&serverTimezone=UTC //导数的时候配的地址
     username: root
     password: root
   application:
@@ -15,6 +16,14 @@ spring:
       database: data
       # username:
       # password:
+  redis:
+    host: localhost  #导数测试redis
+    password: 123456
+    port: 6379
+    database: 0
+    jedis:
+      pool:
+        max-active: 100
 
 eureka:
   client:
@@ -39,6 +48,7 @@ logging:
           mongodb:
             core: debug
 
+#redis配置
 
 #logging.level.自己的mapper包=日志级别
 
