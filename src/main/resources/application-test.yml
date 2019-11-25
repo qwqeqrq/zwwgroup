@@ -19,16 +19,16 @@ spring:
   #测试同时连接多个redis集群配置
   redis:
     timeout: 6000ms
-    password: md34fjmhsJHhgmnjka678i
+    password: root
     cache1:
       cluster:
-        nodes: localhost:6379,localhost:6379,localhost:6379,localhost:6379,localhost:6379,localhost:6379,localhost:6379,1localhost:6379
+        nodes: localhost:6379,localhost:6379,localhost:6379,localhost:6379,localhost:6379,localhost:6379,localhost:6379,localhost:6379
     cache2:
       cluster:
-        nodes: localhost:6379,localhost:6379,localhost:6379,localhost:6379,localhost:6379,localhost:6379,localhost:6379,1localhost:6379
+        nodes: localhost:6379,localhost:6379,localhost:6379,localhost:6379,localhost:6379,localhost:6379,localhost:6379,localhost:6379
     cache3:
       cluster:
-        nodes: localhost:6379,localhost:6379,localhost:6379,localhost:6379,localhost:6379,localhost:6379,localhost:6379,1localhost:6379
+        nodes: localhost:6379,localhost:6379,localhost:6379,localhost:6379,localhost:6379,localhost:6379,localhost:6379,localhost:6379
     lettuce:
       pool:
         max-active: 1000

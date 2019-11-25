@@ -1,19 +1,22 @@
 package com.qsmx.zww.config;
 
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
+import org.apache.ibatis.annotations.Select;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisClusterConfiguration;
-import org.springframework.data.redis.connection.lettuce.LettuceClientConfiguration;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.connection.lettuce.LettucePoolingClientConfiguration;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
+
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -29,7 +32,7 @@ import java.util.Set;
  * 配置一个redis集群
  */
 @Configuration
-@AutoConfigureAfter(RedisAutoConfiguration.class)
+//@AutoConfigureAfter(RedisAutoConfiguration.class)
 
 /*public class RedisClusterConfig {
     @Bean(name = "redisCluster")
@@ -46,12 +49,18 @@ import java.util.Set;
  */
 public class RedisClusterConfig {
 
+    @Value("${spring.redis.cache1.cluster.nodes}")
+    Set<String> nodes; //读取配置文件redis cluster nodes
+    @Value("${spring.redis.cache2.cluster.nodes}")
+    Set<String> nodes2;
+    @Value("${spring.redis.cache3.cluster.nodes}")
+    Set<String> nodes3;
+
     @Bean(name = "redisCluster1")
     public RedisTemplate<String, Object> redisCacheTemplate1() {
         RedisTemplate<String, Object> template = new RedisTemplate<>();
         template.setKeySerializer(new StringRedisSerializer());
         template.setValueSerializer(new GenericJackson2JsonRedisSerializer());
-        Set<String> nodes = new HashSet<>();
         RedisClusterConfiguration clusterConfiguration = new RedisClusterConfiguration(nodes); //redis cluster config by nodes
         LettucePoolingClientConfiguration.LettucePoolingClientConfigurationBuilder lettucePoolingClientConfigurationBuilder =
                 LettucePoolingClientConfiguration.builder();
