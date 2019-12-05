@@ -50,11 +50,12 @@ import java.util.Set;
 public class RedisClusterConfig {
 
     @Value("${spring.redis.cache1.cluster.nodes}")
-    Set<String> nodes; //读取配置文件redis cluster nodes
+    private Set<String> nodes; //读取配置文件redis cluster nodes
     @Value("${spring.redis.cache2.cluster.nodes}")
-    Set<String> nodes2;
+    private Set<String> nodes2;
     @Value("${spring.redis.cache3.cluster.nodes}")
-    Set<String> nodes3;
+    private Set<String> nodes3;
+    private String password;
 
     @Bean(name = "redisCluster1")
     public RedisTemplate<String, Object> redisCacheTemplate1() {
@@ -62,6 +63,7 @@ public class RedisClusterConfig {
         template.setKeySerializer(new StringRedisSerializer());
         template.setValueSerializer(new GenericJackson2JsonRedisSerializer());
         RedisClusterConfiguration clusterConfiguration = new RedisClusterConfiguration(nodes); //redis cluster config by nodes
+        clusterConfiguration.setPassword(password);//password
         LettucePoolingClientConfiguration.LettucePoolingClientConfigurationBuilder lettucePoolingClientConfigurationBuilder =
                 LettucePoolingClientConfiguration.builder();
         GenericObjectPoolConfig poolConfig = new GenericObjectPoolConfig();// todo  使用默认连接池 可以set 配置文件
@@ -69,6 +71,7 @@ public class RedisClusterConfig {
         LettucePoolingClientConfiguration clientConfig = lettucePoolingClientConfigurationBuilder.build();//创建连接池配置信息
         //todo 配置连接池设置信息
         LettuceConnectionFactory redisConnectionFactory = new LettuceConnectionFactory(clusterConfiguration, clientConfig);
+        redisConnectionFactory.afterPropertiesSet();////必须初始化实例
         template.setConnectionFactory(redisConnectionFactory);
         return template;
     }

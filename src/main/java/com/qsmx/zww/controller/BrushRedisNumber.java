@@ -5,12 +5,14 @@ import com.alibaba.fastjson.JSON;
 import com.qsmx.zww.mapper.CarMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import redis.clients.jedis.Jedis;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 
@@ -31,6 +33,22 @@ public class BrushRedisNumber {
     private CarMapper carMapper;
 
     private RedisUtil redisUtil = new RedisUtil();
+
+    //测试redis
+    @RequestMapping(value = "/testRedis")
+    public String testRedis() {
+        String clickCnt = Optional.ofNullable(redisTemplate.opsForValue().get("request")).orElse("").toString();
+        if (!StringUtils.isEmpty(clickCnt) && Long.parseLong(clickCnt) > 5) {
+            System.out.println("超过5次了");
+            redisTemplate.expire("request",3600*24, TimeUnit.SECONDS);
+        } else {
+            redisTemplate.opsForValue().increment("request",1);
+            redisTemplate.expire("request",7200, TimeUnit.SECONDS);
+            System.out.println("加了一次，请查看");
+        }
+        return "完成";
+    }
+
 
     //对比接口
     @RequestMapping(value = "/d")

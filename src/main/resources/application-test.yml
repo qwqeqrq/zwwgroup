@@ -18,8 +18,9 @@ spring:
       # password:
   #测试同时连接多个redis集群配置
   redis:
-    timeout: 6000ms
-    password: root
+    host: localhost  #导数测试redis
+    password:
+    port: 6379
     cache1:
       cluster:
         nodes: localhost:6379,localhost:6379,localhost:6379,localhost:6379,localhost:6379,localhost:6379,localhost:6379,localhost:6379
