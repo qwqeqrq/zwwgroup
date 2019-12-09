@@ -3,6 +3,7 @@ package com.qsmx.zww.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.qsmx.zww.mapper.CarMapper;
+import com.qsmx.zww.uitil.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.util.StringUtils;

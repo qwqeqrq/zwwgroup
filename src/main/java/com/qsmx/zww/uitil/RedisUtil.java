@@ -1,4 +1,4 @@
-package com.qsmx.zww.controller;
+package com.qsmx.zww.uitil;
 
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import redis.clients.jedis.Jedis;
