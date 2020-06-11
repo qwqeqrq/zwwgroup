@@ -99,7 +99,7 @@
         <dependency>
             <groupId>commons-beanutils</groupId>
             <artifactId>commons-beanutils</artifactId>
-            <version>1.8.3</version>
+            <version>1.9.2</version>
         </dependency>
         <!--导入导出工具涉及相关依赖完毕-->
         <!--ftp上传文件到静态服务器-->
