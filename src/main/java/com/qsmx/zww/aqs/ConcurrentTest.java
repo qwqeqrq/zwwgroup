@@ -12,7 +12,7 @@ import java.util.concurrent.*;
 
 public class ConcurrentTest {
 
-    private final static int requestNum = 10000;  //请求总数
+    private final static int requestNum = 1;  //请求总数
 
     private static List<String> arrayList = new ArrayList<>(); //线程不安全
     private static CopyOnWriteArrayList<String> copyOnWriteArrayList = new CopyOnWriteArrayList<>(); //线程安全
@@ -25,14 +25,13 @@ public class ConcurrentTest {
 
     private static void run() throws InterruptedException {
 
-        for (int i = 0; i < requestNum; i++) {  //异步启动2000个线程进行调用test方法
-
+        for (int i = 0; i < 10000; i++) {  //异步启动2000个线程进行调用test方法
             executor.execute(() -> {
                 try {
-                    semaphore.acquire();//获取执行许可
+                    semaphore.acquire();//信号量获取执行许可
                     test();
                     test2();
-                    semaphore.release();//释放许可
+                    semaphore.release();//信号量释放许可
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } finally {
@@ -51,6 +50,7 @@ public class ConcurrentTest {
     private synchronized static void test() {
 
         try {
+            Thread.sleep(1000);
             arrayList.add("1");
         } catch (Exception e) {
             e.printStackTrace();
