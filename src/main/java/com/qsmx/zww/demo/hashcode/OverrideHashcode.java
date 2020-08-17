@@ -7,7 +7,7 @@ import java.util.Objects;
  * 使用java8新特性 重写对象的hashcode 和 equals 方法
  *
  *
- * 这个已经实现好了 以后可以直接这个样子去写去用
+ * 这个已经实现好了 以后可以直接这个样子去写去用，切记重写equals 方法时必须重写hashcode方法
  */
 public class OverrideHashcode {
 
