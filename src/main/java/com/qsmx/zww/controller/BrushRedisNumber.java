@@ -5,6 +5,10 @@ import com.alibaba.fastjson.JSON;
 import com.qsmx.zww.mapper.CarMapper;
 import com.qsmx.zww.uitil.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.data.redis.connection.RedisConnection;
+import org.springframework.data.redis.connection.StringRedisConnection;
+import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,10 +45,10 @@ public class BrushRedisNumber {
         String clickCnt = Optional.ofNullable(redisTemplate.opsForValue().get("request")).orElse("").toString();
         if (!StringUtils.isEmpty(clickCnt) && Long.parseLong(clickCnt) > 5) {
             System.out.println("超过5次了");
-            redisTemplate.expire("request",3600*24, TimeUnit.SECONDS);
+            redisTemplate.expire("request", 3600 * 24, TimeUnit.SECONDS);
         } else {
-            redisTemplate.opsForValue().increment("request",1);
-            redisTemplate.expire("request",7200, TimeUnit.SECONDS);
+            redisTemplate.opsForValue().increment("request", 1);
+            redisTemplate.expire("request", 7200, TimeUnit.SECONDS);
             System.out.println("加了一次，请查看");
         }
         return "完成";
@@ -246,6 +250,32 @@ public class BrushRedisNumber {
     public String rere(HttpServletRequest request) {
         System.out.println(JSON.toJSONString(request.getParameterMap()));
         return request.toString();
+    }
+
+    @RequestMapping(value = "/pipeline")
+    public String pipeline(HttpServletRequest request) throws InterruptedException {
+        List<String> list = new ArrayList();
+        for (int i = 0; i < 30; i = i + 2) {
+            list.add("key:" + i);
+            //   redisTemplate.opsForValue().set("key:" + String.valueOf(i), "value:" + String.valueOf(i));
+        }
+        // System.out.println("写入成功，速去查看");
+        List list1 = redisTemplate.executePipelined(new RedisCallback<Object>() {
+            @Override
+            public Object doInRedis(RedisConnection redisConnection) throws DataAccessException {
+                for (String key : list) {
+                    redisConnection.get(redisTemplate.getStringSerializer().serialize(key));
+                }
+                return null;
+            }
+        });
+        List list2 = redisTemplate.opsForValue().multiGet(list);
+        for (Object o : list2) {
+            if (o != null)
+                System.out.println(o);
+        }
+        System.out.println("seccess");
+        return "seccess";
     }
 
 }
