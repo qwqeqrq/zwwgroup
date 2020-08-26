@@ -157,6 +157,27 @@
             <version>3.3.0</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.github.eprst/murmur3 -->
+        <dependency>
+            <groupId>com.github.eprst</groupId>
+            <artifactId>murmur3</artifactId>
+            <version>0.4.2</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.strapdata.elasticsearch.plugin/mapper-murmur3 -->
+        <dependency>
+            <groupId>com.strapdata.elasticsearch.plugin</groupId>
+            <artifactId>mapper-murmur3</artifactId>
+            <version>6.2.3.28</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/net.spy/spymemcached -->
+        <dependency>
+            <groupId>net.spy</groupId>
+            <artifactId>spymemcached</artifactId>
+            <version>2.12.3</version>
+        </dependency>
+
+
     </dependencies>
     <!--因为要用maven 打包运行 导入springboot maven 插件-->
     <build>
