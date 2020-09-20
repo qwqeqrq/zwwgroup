@@ -19,9 +19,6 @@ public class EHan {
 
     //提供一个公共的方法，对外提供实例
     public static EHan geteHan() {
-        if (eHan == null) {
-            eHan = new EHan();
-        }
         return eHan;
     }
 
